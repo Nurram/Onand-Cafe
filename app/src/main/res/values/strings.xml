@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Onand Cafe</string>
+
+    //Login
+    <string name="login_msg">Login to your account</string>
+    <string name="username_email">Username / Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    //Register
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="have_account">Already have an account? Login</string>
+    <string name="please_fill">Please fill all fields!</string>
+    <string name="enter_valid_email">Please enter valid email!</string>
+    <string name="password_short">Password to short! (min: 6 characters)</string>
+    <string name="email_username_used">Email / username are used!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
