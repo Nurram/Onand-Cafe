@@ -35,7 +35,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 if(it.isNotEmpty()) showToast(requireContext(), it, Toast.LENGTH_SHORT)
             }
             viewModel.getIsSuccess().observe(viewLifecycleOwner) {
-                if (it != null) showToast(requireContext(), "it works", Toast.LENGTH_SHORT)
+                if (it != null) Navigation
+                        .findNavController(view)
+                        .navigate(R.id.action_loginFragment_to_homeActivity)
             }
 
             btnLoginRegister.setOnClickListener {
