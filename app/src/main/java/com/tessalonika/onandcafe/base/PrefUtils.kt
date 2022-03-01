@@ -16,6 +16,10 @@ class PrefUtils(context: Context, private var prefKey: String) {
         preferences.edit().putInt(key, value).apply()
     }
 
+    fun saveToPref(key: String?, value: Boolean) {
+        preferences.edit().putBoolean(key, value).apply()
+    }
+
     fun getFromPref(key: String?): String? {
         return preferences.getString(key, "")
     }
@@ -24,9 +28,14 @@ class PrefUtils(context: Context, private var prefKey: String) {
         return preferences.getInt(key, 0)
     }
 
+    fun getFromPrefBoolean(key: String?): Boolean {
+        return preferences.getBoolean(key, false)
+    }
+
     companion object {
         const val AUTH_PREF = "auth_pref"
         const val AUTH_ID_PREF = "auth_id_pref"
+        const val AUTH_ADMIN_PREF = "auth_admin_pref"
     }
 
 }

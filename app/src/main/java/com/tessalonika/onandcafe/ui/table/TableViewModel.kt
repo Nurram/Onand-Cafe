@@ -27,12 +27,12 @@ class TableViewModel(
     private suspend fun generateTable() {
         val tables = arrayListOf<Table>()
         
-        for (i: Int in 0 until 7) {
+        for (i: Int in 1 until 8) {
             val table = Table(i, "Meja $i", false)
-            tableDao?.insertTable(table)
             tables.add(table)
         }
-        
+
+        tableDao?.insertTables(tables)
         isSuccess.postValue(tables)
         isLoading.postValue(false)
     }

@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName= "table")
 data class Table(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @NonNull
-    var id: Int = 0,
+    var id: Int,
     var tableName: String,
-    var isOccupied: Boolean = false
+    var isOccupied: Boolean
 )

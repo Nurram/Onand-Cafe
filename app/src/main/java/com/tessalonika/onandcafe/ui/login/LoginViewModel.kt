@@ -19,6 +19,14 @@ class LoginViewModel(
         }
     }
 
+    fun isLoggedIn(): Boolean {
+        return prefUtils.getFromPrefInt(PrefUtils.AUTH_ID_PREF) > 0
+    }
+
+    fun isAdmin(): Boolean {
+        return prefUtils.getFromPrefBoolean(PrefUtils.AUTH_ADMIN_PREF)
+    }
+
     fun authenticateUser(value: String, password: String) {
         isLoading.postValue(true)
         viewModelScope.launch {
@@ -28,6 +36,7 @@ class LoginViewModel(
                 isLoading.postValue(false)
                 isSuccess.postValue(user)
                 prefUtils.saveToPref(PrefUtils.AUTH_ID_PREF, user.id)
+                prefUtils.saveToPref(PrefUtils.AUTH_ADMIN_PREF, user.isAdmin)
             } else {
                 isLoading.postValue(false)
                 onError.postValue("Invalid credentials!")

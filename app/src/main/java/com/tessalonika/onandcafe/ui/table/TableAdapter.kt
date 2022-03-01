@@ -26,7 +26,7 @@ class TableAdapter(
                 if (table.isOccupied) cvTableCard
                     .setCardBackgroundColor(ContextCompat.getColor(context, R.color.purple_500))
                 else cvTableCard
-                    .setCardBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                    .setCardBackgroundColor(ContextCompat.getColor(context, R.color.ash))
             }
         }
     }

@@ -25,6 +25,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         val factory = ViewModelFactory(requireActivity().application)
         val viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
 
+        if (viewModel.isLoggedIn()) {
+            if(viewModel.isAdmin()) {
+                Navigation
+                    .findNavController(view)
+                    .navigate(R.id.action_loginFragment_to_homeAdminActivity)
+            } else {
+                Navigation
+                    .findNavController(view)
+                    .navigate(R.id.action_loginFragment_to_homeActivity)
+            }
+        }
+
         binding.apply {
             viewModel.getIsLoading().observe(viewLifecycleOwner) {
                 pbLogin.visible(it)

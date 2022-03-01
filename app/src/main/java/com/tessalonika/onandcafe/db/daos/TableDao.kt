@@ -12,6 +12,9 @@ interface TableDao {
     @Insert
     suspend fun insertTable(table: Table): Long
 
+    @Insert
+    suspend fun insertTables(tables: List<Table>)
+
     @Query("select * from `table`")
     suspend fun getTables(): List<Table>?
 }

@@ -7,6 +7,6 @@
     <fragment
         android:id="@+id/menu_meja"
         android:name="com.tessalonika.onandcafe.ui.table.TableFragment"
-        android:label="fragment_table"
+        android:label="@string/meja"
         tools:layout="@layout/fragment_table" />
 </navigation>
