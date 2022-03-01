@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_meja"
+        android:title="@string/meja"/>
+
+    <item
+        android:id="@+id/menu_category"
+        android:title="@string/kategori_menu"/>
+
+    <item
+        android:id="@+id/menu_history_transaction"
+        android:title="@string/history_transaksi"/>
+
+    <item
+        android:id="@+id/menu_kas"
+        android:title="@string/kas"/>
+
+    <item
+        android:id="@+id/menu_rekap_kas"
+        android:title="@string/rekap_kas"/>
+
+    <item
+        android:id="@+id/menu_stock"
+        android:title="@string/stok_barang"/>
+
+    <item
+        android:id="@+id/menu_logout"
+        android:title="@string/logout"/>
+</menu>

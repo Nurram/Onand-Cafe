@@ -4,12 +4,15 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.tessalonika.onandcafe.db.daos.TableDao
 import com.tessalonika.onandcafe.db.daos.UserDao
+import com.tessalonika.onandcafe.model.Table
 import com.tessalonika.onandcafe.model.User
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class, Table::class], version = 1)
 abstract class MainDb : RoomDatabase() {
     abstract val userDao: UserDao
+    abstract val tableDao: TableDao
 
     companion object {
         @Volatile

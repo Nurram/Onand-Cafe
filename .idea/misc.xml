@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/semi_rounded_corner.xml" value="0.1945" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.15854700854700854" />
+        <entry key="app/src/main/res/layout/activity_home_admin.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/appbar_admin_main.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/appbar_main.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/fragment_contact.xml" value="0.15854700854700854" />
@@ -13,6 +16,9 @@
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/fragment_table.xml" value="0.15854700854700854" />
+        <entry key="app/src/main/res/layout/item_list_table.xml" value="0.15854700854700854" />
+        <entry key="app/src/main/res/menu/admin_menu.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.15854700854700854" />
       </map>
     </option>

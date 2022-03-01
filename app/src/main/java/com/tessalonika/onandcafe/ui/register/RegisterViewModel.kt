@@ -12,27 +12,30 @@ import com.tessalonika.onandcafe.model.User
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(
-    private val userDao: UserDao
+    private val userDao: UserDao?
 ): BaseViewModel<Long>() {
 
     fun registerUser(user: User) {
         isLoading.postValue(true)
         viewModelScope.launch {
-            val isEmailExist = userDao.getUserCountByUsernameEmail(user.email)
-            val isUsernameExist = userDao.getUserCountByUsernameEmail(user.username)
-            if (isEmailExist > 0 || isUsernameExist > 0) {
-                onError.postValue("Email or username are used!")
-                isLoading.postValue(false)
-            } else {
-                saveUser(user)
-                isLoading.postValue(false)
+            val isEmailExist = userDao?.getUserCountByUsernameEmail(user.email)
+            val isUsernameExist = userDao?.getUserCountByUsernameEmail(user.username)
+
+            if (isEmailExist != null && isUsernameExist != null) {
+                if (isEmailExist > 0 || isUsernameExist > 0) {
+                    onError.postValue("Email or username are used!")
+                    isLoading.postValue(false)
+                } else {
+                    saveUser(user)
+                    isLoading.postValue(false)
+                }
             }
         }
     }
 
     private fun saveUser(user: User) {
         viewModelScope.launch {
-            isSuccess.postValue(userDao.insertUser(user))
+            isSuccess.postValue(userDao?.insertUser(user))
         }
     }
 }

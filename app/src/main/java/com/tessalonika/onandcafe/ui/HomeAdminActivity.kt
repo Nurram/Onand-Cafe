@@ -6,19 +6,22 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.*
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.tessalonika.onandcafe.R
-import com.tessalonika.onandcafe.databinding.ActivityHomeBinding
+import com.tessalonika.onandcafe.databinding.ActivityHomeAdminBinding
 
-class HomeActivity : AppCompatActivity() {
+class HomeAdminActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private var isAdmin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityHomeBinding.inflate(layoutInflater)
+        val binding = ActivityHomeAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.appbar.toolbar)
 
@@ -26,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navView
 
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.menu_contact, R.id.menu_about, R.id.menu_history, R.id.menu_menu), drawerLayout)
+            R.id.menu_meja, R.id.menu_about, R.id.menu_history, R.id.menu_menu), drawerLayout)
 
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHost.navController

@@ -41,7 +41,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                 val password = tilRegisterPassword.editText?.text.toString()
 
                 if(invalidateAuthForm(requireContext(), username, email, password)) {
-                    viewModel.registerUser(User(0, username, email, password))
+                    viewModel.registerUser(User(0, username, email, password, false))
                 }
             }
         }

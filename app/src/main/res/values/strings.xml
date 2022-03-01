@@ -22,6 +22,13 @@
     <string name="history">History</string>
     <string name="about">About</string>
     <string name="menu">Menu</string>
+    <string name="meja">Meja</string>
+    <string name="kategori_menu">Kategori Menu</string>
+    <string name="history_transaksi">History Transaksi</string>
+    <string name="kas">Kas</string>
+    <string name="rekap_kas">Rekap Kas</string>
+    <string name="stok_barang">Stok Barang</string>
+    <string name="logout">Logout</string>
 
     //Contact
     <string name="contact_us">Contact Us</string>

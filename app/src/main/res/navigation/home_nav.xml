@@ -8,21 +8,21 @@
     <fragment
         android:id="@+id/menu_contact"
         android:name="com.tessalonika.onandcafe.ui.contact.ContactFragment"
-        android:label="fragment_contact"
+        android:label=""
         tools:layout="@layout/fragment_contact" />
     <fragment
-        android:id="@+id/historyFragment"
+        android:id="@+id/menu_history"
         android:name="com.tessalonika.onandcafe.ui.history.HistoryFragment"
-        android:label="fragment_history"
+        android:label=""
         tools:layout="@layout/fragment_history" />
     <fragment
-        android:id="@+id/menu"
+        android:id="@+id/menu_menu"
         android:name="com.tessalonika.onandcafe.ui.menu.MenuFragment"
-        android:label="fragment_menu"
+        android:label=""
         tools:layout="@layout/fragment_menu" />
     <fragment
         android:id="@+id/menu_about"
         android:name="com.tessalonika.onandcafe.ui.about.AboutFragment"
-        android:label="fragment_about"
+        android:label=""
         tools:layout="@layout/fragment_about" />
 </navigation>

@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/appbar"
-        layout="@layout/appbar_main"
+        layout="@layout/appbar_admin_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/drawer_menu"
+        app:menu="@menu/admin_menu"
         android:fitsSystemWindows="true" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

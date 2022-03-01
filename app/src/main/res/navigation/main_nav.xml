@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_loginFragment_to_homeActivity"
             app:destination="@id/homeActivity" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeAdminActivity"
+            app:destination="@id/homeAdminActivity" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -36,4 +39,8 @@
         android:name="com.tessalonika.onandcafe.ui.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
+    <activity
+        android:id="@+id/homeAdminActivity"
+        android:name="com.tessalonika.onandcafe.ui.HomeAdminActivity"
+        android:label="HomeAdminActivity" />
 </navigation>
