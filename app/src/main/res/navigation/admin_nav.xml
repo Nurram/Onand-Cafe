@@ -9,4 +9,17 @@
         android:name="com.tessalonika.onandcafe.ui.table.TableFragment"
         android:label="@string/meja"
         tools:layout="@layout/fragment_table" />
+    <fragment
+        android:id="@+id/menu_category"
+        android:name="com.tessalonika.onandcafe.ui.category.CategoryFragment"
+        android:label="@string/category" >
+        <action
+            android:id="@+id/action_menu_category_to_categoryAddFragment"
+            app:destination="@id/categoryAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryAddFragment"
+        android:name="com.tessalonika.onandcafe.ui.category.add.CategoryAddFragment"
+        android:label="@string/add_category"
+        tools:layout="@layout/fragment_category_add" />
 </navigation>

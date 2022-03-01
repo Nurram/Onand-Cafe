@@ -34,6 +34,14 @@
     <string name="contact_us">Contact Us</string>
     <string name="web">https://onand-coffee.business.site</string>
     <string name="ig_acc">\@onandcoffee</string>
+
+    //Category
+    <string name="category">Kategori</string>
+    <string name="category_name">Nama kategori</string>
+    <string name="save">Save</string>
+    <string name="add_category">Add category</string>
+    <string name="delete">Delete</string>
+    <string name="goods_stock">Stock Barang</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
