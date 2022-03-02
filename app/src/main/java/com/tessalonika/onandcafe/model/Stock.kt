@@ -7,11 +7,16 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "category")
-data class Category(
+@Entity(tableName = "stock")
+data class Stock(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    var categoryName: String,
+    var stockName: String,
+    var stockMetric: String,
+    var stockInitialValue: Int,
+    var stockIn: Int,
+    var stockOut: Int,
+    var stockTotal: Int,
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    var categoryImage: ByteArray,
+    var StockImage: ByteArray,
 ): Parcelable

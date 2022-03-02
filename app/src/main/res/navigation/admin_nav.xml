@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_table" />
     <fragment
         android:id="@+id/menu_category"
-        android:name="com.tessalonika.onandcafe.ui.category.CategoryFragment"
+        android:name="com.tessalonika.onandcafe.ui.stock.StockFragment"
         android:label="@string/category" >
         <action
             android:id="@+id/action_menu_category_to_categoryAddFragment"
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoryAddFragment"
-        android:name="com.tessalonika.onandcafe.ui.category.add.CategoryAddFragment"
+        android:name="com.tessalonika.onandcafe.ui.stock.add.StockAddFragment"
         android:label="@string/add_category"
-        tools:layout="@layout/fragment_category_add" />
+        tools:layout="@layout/fragment_stock_add" />
 </navigation>

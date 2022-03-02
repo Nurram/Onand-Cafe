@@ -7,7 +7,7 @@ import com.tessalonika.onandcafe.base.PrefUtils
 import com.tessalonika.onandcafe.db.MainDb
 import com.tessalonika.onandcafe.ui.login.LoginViewModel
 import com.tessalonika.onandcafe.ui.register.RegisterViewModel
-import com.tessalonika.onandcafe.ui.category.CategoryViewModel
+import com.tessalonika.onandcafe.ui.stock.StockViewModel
 import com.tessalonika.onandcafe.ui.table.TableViewModel
 
 class ViewModelFactory(
@@ -18,7 +18,7 @@ class ViewModelFactory(
         val db = MainDb.getDb(application)
         val userDao = db?.userDao
         val tableDao = db?.tableDao
-        val categoryDao = db?.categoryDao
+        val categoryDao = db?.stockDao
 
         val prefUtil = PrefUtils(application, PrefUtils.AUTH_PREF)
 
@@ -35,8 +35,8 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(TableViewModel::class.java) ->
                 return TableViewModel(tableDao) as T
 
-            modelClass.isAssignableFrom(CategoryViewModel::class.java) ->
-                return CategoryViewModel(categoryDao) as T
+            modelClass.isAssignableFrom(StockViewModel::class.java) ->
+                return StockViewModel(categoryDao) as T
         }
 
         return RegisterViewModel(userDao) as T

@@ -35,6 +35,15 @@
     <string name="web">https://onand-coffee.business.site</string>
     <string name="ig_acc">\@onandcoffee</string>
 
+    //Stock
+    <string name="stock_name">Stock Name</string>
+    <string name="id_request">ID Request</string>
+    <string name="metric">Metric</string>
+    <string name="initial_stock">Initial Stock</string>
+    <string name="in_stock">Int</string>
+    <string name="out_stock">Out</string>
+    <string name="total_stock">Total Stock</string>
+
     //Category
     <string name="category">Kategori</string>
     <string name="category_name">Nama kategori</string>
