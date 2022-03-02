@@ -21,10 +21,10 @@ class StockAdapter(
             binding.apply {
                 tvStockName.text = stock.stockName
 
-                if (stock.StockImage.isNotEmpty()) {
-                    val categoryImage = stock.StockImage
-                    val bitmap = BitmapFactory.decodeByteArray(categoryImage, 0, categoryImage.size)
-                    civStock.setImageBitmap(bitmap)
+                if (stock.stockName.length > 1) {
+                    tvStockInitial.text = stock.stockName.slice(0..2)
+                } else {
+                    tvStockInitial.text = stock.stockName.slice(0..1)
                 }
 
                 itemView.setOnClickListener { onClick(stock) }

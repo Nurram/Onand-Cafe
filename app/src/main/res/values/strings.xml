@@ -44,6 +44,12 @@
     <string name="out_stock">Out</string>
     <string name="total_stock">Total Stock</string>
 
+    //Menu
+    <string name="add_menu">Add Menu</string>
+    <string name="menu_name">Name</string>
+    <string name="menu_desc">Description</string>
+    <string name="menu_price">Price</string>
+
     //Category
     <string name="category">Kategori</string>
     <string name="category_name">Nama kategori</string>

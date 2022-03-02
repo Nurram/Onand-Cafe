@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.tessalonika.onandcafe.base.PrefUtils
 import com.tessalonika.onandcafe.db.MainDb
 import com.tessalonika.onandcafe.ui.login.LoginViewModel
+import com.tessalonika.onandcafe.ui.menu.MenuViewModel
 import com.tessalonika.onandcafe.ui.register.RegisterViewModel
 import com.tessalonika.onandcafe.ui.stock.StockViewModel
 import com.tessalonika.onandcafe.ui.table.TableViewModel
@@ -18,7 +19,8 @@ class ViewModelFactory(
         val db = MainDb.getDb(application)
         val userDao = db?.userDao
         val tableDao = db?.tableDao
-        val categoryDao = db?.stockDao
+        val stockDao = db?.stockDao
+        val menuDao = db?.menuDao
 
         val prefUtil = PrefUtils(application, PrefUtils.AUTH_PREF)
 
@@ -36,7 +38,10 @@ class ViewModelFactory(
                 return TableViewModel(tableDao) as T
 
             modelClass.isAssignableFrom(StockViewModel::class.java) ->
-                return StockViewModel(categoryDao) as T
+                return StockViewModel(stockDao) as T
+
+            modelClass.isAssignableFrom(MenuViewModel::class.java) ->
+                return MenuViewModel(menuDao) as T
         }
 
         return RegisterViewModel(userDao) as T

@@ -17,6 +17,4 @@ data class Stock(
     var stockIn: Int,
     var stockOut: Int,
     var stockTotal: Int,
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    var StockImage: ByteArray,
 ): Parcelable

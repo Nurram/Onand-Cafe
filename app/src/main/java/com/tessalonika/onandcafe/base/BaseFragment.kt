@@ -16,6 +16,7 @@ abstract class BaseFragment<VB: ViewBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         _binding = getViewBinding()
         return binding.root
     }
