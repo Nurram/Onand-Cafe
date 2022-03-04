@@ -17,5 +17,7 @@ data class Menu(
     val price: Long,
 
     @Ignore
-    var isSelected: Boolean = false
+    var isSelected: Boolean = false,
+    @Ignore
+    var qty: Int = 1
 ): Parcelable

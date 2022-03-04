@@ -41,7 +41,14 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>() {
             rvMenu.layoutManager = LinearLayoutManager(requireContext())
 
             fabMenuAdd.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putParcelableArrayList("menus", adapter.getData())
 
+                Navigation
+                    .findNavController(it)
+                    .previousBackStackEntry?.
+                    savedStateHandle?.
+                    set("menu", adapter.getData())
             }
         }
     }

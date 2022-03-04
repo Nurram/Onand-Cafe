@@ -49,6 +49,14 @@
     <string name="menu_name">Name</string>
     <string name="menu_desc">Description</string>
     <string name="menu_price">Price</string>
+    <string name="menu_order">Order</string>
+
+    //Order
+    <string name="buyer_name">Buyer Name</string>
+    <string name="no_table">No. Table</string>
+    <string name="cash">Total Cash</string>
+    <string name="proceed">Proceed</string>
+    <string name="rp">Rp.%s</string>
 
     //Category
     <string name="category">Kategori</string>

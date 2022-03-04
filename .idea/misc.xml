@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_baseline_remove_24.xml" value="0.172" />
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/rounded_corner_outline.xml" value="0.172" />
         <entry key="app/src/main/res/drawable/rounded_corner_primary.xml" value="0.172" />
         <entry key="app/src/main/res/drawable/semi_rounded_corner.xml" value="0.1945" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.15854700854700854" />
@@ -19,6 +21,7 @@
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.13381787088499358" />
         <entry key="app/src/main/res/layout/fragment_menu_add.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/fragment_order.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.17119565217391305" />
         <entry key="app/src/main/res/layout/fragment_stock.xml" value="0.13381787088499358" />
@@ -27,6 +30,7 @@
         <entry key="app/src/main/res/layout/fragment_table.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/item_list_category.xml" value="0.13381787088499358" />
         <entry key="app/src/main/res/layout/item_list_menu.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_list_order.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_list_stock.xml" value="0.16" />
         <entry key="app/src/main/res/layout/item_list_stock_category.xml" value="0.13381787088499358" />
         <entry key="app/src/main/res/layout/item_list_table.xml" value="0.15854700854700854" />

@@ -63,5 +63,5 @@ class MenuAdapter(
         notifyDataSetChanged()
     }
 
-    fun getData(): List<Menu> = menus
+    fun getData(): ArrayList<Menu> = menus
 }
