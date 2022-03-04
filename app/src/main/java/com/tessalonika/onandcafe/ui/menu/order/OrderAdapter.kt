@@ -10,10 +10,9 @@ import com.tessalonika.onandcafe.databinding.ItemListOrderBinding
 import com.tessalonika.onandcafe.model.Menu
 
 class OrderAdapter(
-    private val context: Context,
-    private val onClick: (Menu) -> Unit
+    private val context: Context
 ): RecyclerView.Adapter<OrderAdapter.OrderHolder>() {
-    private val orders = arrayListOf<Menu>()
+    private val menus = arrayListOf<Menu>()
 
     inner class OrderHolder(
         private val binding: ItemListOrderBinding
@@ -45,7 +44,7 @@ class OrderAdapter(
         }
 
         private fun removeData(position: Int) {
-            orders.removeAt(position)
+            menus.removeAt(position)
             notifyItemChanged(position)
         }
     }
@@ -58,8 +57,28 @@ class OrderAdapter(
     }
 
     override fun onBindViewHolder(holder: OrderHolder, position: Int) {
-        holder.bind(orders[position])
+        holder.bind(menus[position])
     }
 
-    override fun getItemCount(): Int = orders.size
+    override fun getItemCount(): Int = menus.size
+
+     fun addData(menu: Menu) {
+        menus.add(menu)
+        notifyItemChanged(menus.size - 1)
+    }
+
+    fun getTotalPrice(): Long {
+        var total = 0L
+
+        menus.forEach {
+            total += (it.price * it.qty)
+        }
+
+        return total
+    }
+
+    fun clearData() {
+        menus.clear()
+        notifyDataSetChanged()
+    }
 }

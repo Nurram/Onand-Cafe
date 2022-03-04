@@ -13,14 +13,6 @@
         android:title="@string/history_transaksi"/>
 
     <item
-        android:id="@+id/menu_kas"
-        android:title="@string/kas"/>
-
-    <item
-        android:id="@+id/menu_rekap_kas"
-        android:title="@string/rekap_kas"/>
-
-    <item
         android:id="@+id/menu_stock"
         android:title="@string/stok_barang"/>
 

@@ -2,7 +2,6 @@ package com.tessalonika.onandcafe.ui.menu
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,8 +9,6 @@ import com.tessalonika.onandcafe.R
 import com.tessalonika.onandcafe.base.BaseFragment
 import com.tessalonika.onandcafe.databinding.FragmentMenuBinding
 import com.tessalonika.onandcafe.ui.ViewModelFactory
-import com.tessalonika.onandcafe.ui.data.MenuViewModel
-import com.tessalonika.onandcafe.ui.stock.StockViewModel
 
 class MenuFragment : BaseFragment<FragmentMenuBinding>() {
 

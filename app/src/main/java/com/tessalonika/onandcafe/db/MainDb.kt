@@ -4,21 +4,16 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.tessalonika.onandcafe.db.daos.MenuDao
-import com.tessalonika.onandcafe.db.daos.StockDao
-import com.tessalonika.onandcafe.db.daos.TableDao
-import com.tessalonika.onandcafe.db.daos.UserDao
-import com.tessalonika.onandcafe.model.Menu
-import com.tessalonika.onandcafe.model.Stock
-import com.tessalonika.onandcafe.model.Table
-import com.tessalonika.onandcafe.model.User
+import com.tessalonika.onandcafe.db.daos.*
+import com.tessalonika.onandcafe.model.*
 
-@Database(entities = [User::class, Table::class, Stock::class, Menu::class], version = 1)
+@Database(entities = [User::class, Table::class, Stock::class, Menu::class, Order::class], version = 1)
 abstract class MainDb : RoomDatabase() {
     abstract val userDao: UserDao
     abstract val tableDao: TableDao
     abstract val stockDao: StockDao
     abstract val menuDao: MenuDao
+    abstract val orderWithMenuDao: OrderWithMenuDao
 
     companion object {
         @Volatile

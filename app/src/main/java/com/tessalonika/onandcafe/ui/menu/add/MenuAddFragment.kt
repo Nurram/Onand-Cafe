@@ -1,10 +1,7 @@
 package com.tessalonika.onandcafe.ui.menu.add
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -14,8 +11,7 @@ import com.tessalonika.onandcafe.base.showToast
 import com.tessalonika.onandcafe.databinding.FragmentMenuAddBinding
 import com.tessalonika.onandcafe.model.Menu
 import com.tessalonika.onandcafe.ui.ViewModelFactory
-import com.tessalonika.onandcafe.ui.data.MenuViewModel
-import com.tessalonika.onandcafe.ui.stock.StockViewModel
+import com.tessalonika.onandcafe.ui.menu.MenuViewModel
 
 class MenuAddFragment : BaseFragment<FragmentMenuAddBinding>() {
     private lateinit var viewModel: MenuViewModel

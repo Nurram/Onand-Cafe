@@ -1,4 +1,4 @@
-package com.tessalonika.onandcafe.ui.data
+package com.tessalonika.onandcafe.ui.menu
 
 import androidx.lifecycle.viewModelScope
 import com.tessalonika.onandcafe.base.BaseViewModel

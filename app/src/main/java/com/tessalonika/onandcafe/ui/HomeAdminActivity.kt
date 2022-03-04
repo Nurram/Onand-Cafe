@@ -29,7 +29,7 @@ class HomeAdminActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navView
 
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.menu_meja, R.id.menu_about, R.id.menu_history, R.id.menu_menu), drawerLayout)
+            R.id.menu_meja, R.id.menu_stock, R.id.menu_history, R.id.menu_menu), drawerLayout)
 
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHost.navController

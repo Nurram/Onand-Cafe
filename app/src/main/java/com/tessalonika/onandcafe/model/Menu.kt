@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "menu")
 data class Menu(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val menuId: Int,
     val category: String,
     val name: String,
     val description: String,
