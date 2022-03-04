@@ -13,10 +13,13 @@ interface MenuDao {
     @Insert
     fun insert(menu: Menu)
 
-    @Query("select * from menu")
+    @Query("select * from menu where isCoffee='true'")
     fun getAll(): LiveData<List<Menu>>?
 
-    @Query("select * from menu where id=:id")
+    @Query("select * from menu where isCoffee='false'")
+    fun getAllNonCoffee(): LiveData<List<Menu>>?
+
+    @Query("select * from menu where menuId=:id")
     fun getById(id: Int): Menu?
 
     @Delete

@@ -15,7 +15,7 @@ data class Menu(
     val name: String,
     val description: String,
     val price: Long,
-
+    val isCoffee: Boolean,
     @Ignore
     var isSelected: Boolean = false,
     @Ignore

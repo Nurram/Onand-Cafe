@@ -2,6 +2,7 @@ package com.tessalonika.onandcafe.ui.menu
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,8 @@ import com.tessalonika.onandcafe.databinding.FragmentMenuBinding
 import com.tessalonika.onandcafe.ui.ViewModelFactory
 
 class MenuFragment : BaseFragment<FragmentMenuBinding>() {
+    private lateinit var adapter: MenuAdapter
+    private lateinit var viewModel: MenuViewModel
 
     override fun getViewBinding(): FragmentMenuBinding =
         FragmentMenuBinding.inflate(layoutInflater)
@@ -29,14 +32,24 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>() {
 
         val factory = ViewModelFactory(requireActivity().application)
         val viewModel = ViewModelProvider(this, factory)[MenuViewModel::class.java]
-        viewModel.getAll()?.observe(viewLifecycleOwner) {
-            adapter.setData(it)
-        }
+        getData(true)
 
         binding.apply {
             rvMenu.adapter = adapter
             rvMenu.layoutManager = LinearLayoutManager(requireContext())
 
+            btnCoffee.setOnClickListener {
+                btnCoffee.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.holo_orange_dark))
+                btnNonCoffee.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.ash))
+
+                getData(true)
+            }
+            btnNonCoffee.setOnClickListener {
+                btnNonCoffee.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.holo_orange_dark))
+                btnCoffee.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.ash))
+
+                getData(false)
+            }
             fabMenuAdd.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putParcelableArrayList("menus", adapter.getData())
@@ -61,5 +74,15 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>() {
         }
 
         return true
+    }
+
+    private fun getData(isCoffee: Boolean) {
+        if (isCoffee) viewModel.getAll()?.observe(viewLifecycleOwner) {
+            adapter.setData(it)
+        } else {
+            viewModel.getAllNonCoffee()?.observe(viewLifecycleOwner) {
+                adapter.setData(it)
+            }
+        }
     }
 }

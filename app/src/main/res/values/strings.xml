@@ -45,12 +45,14 @@
     <string name="total_stock">Total Stock</string>
 
     //Menu
+    <string name="coffee">Coffee</string>
+    <string name="non_coffee">Non Coffee</string>
     <string name="add_menu">Add Menu</string>
     <string name="menu_name">Name</string>
     <string name="menu_desc">Description</string>
     <string name="menu_price">Price</string>
     <string name="menu_order">Order</string>
-
+    <string name="menu_coffee">Coffee?</string>
     //Order
     <string name="buyer_name">Buyer Name</string>
     <string name="no_table">No. Table</string>

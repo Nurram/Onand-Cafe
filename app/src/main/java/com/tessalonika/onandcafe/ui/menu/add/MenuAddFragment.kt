@@ -40,6 +40,7 @@ class MenuAddFragment : BaseFragment<FragmentMenuAddBinding>() {
             val nameEt = tilMenuName.editText?.text
             val descEt = tilMenuDesc.editText?.text
             val priceEt = tilMenuPrice.editText?.text
+            val coffeeCk = ckCoffee.isChecked
 
             if (categoryEt.isNullOrEmpty() ||
                     nameEt.isNullOrEmpty() ||
@@ -52,7 +53,8 @@ class MenuAddFragment : BaseFragment<FragmentMenuAddBinding>() {
                     categoryEt.toString(),
                     nameEt.toString(),
                     descEt.toString(),
-                    priceEt.toString().toLong()
+                    priceEt.toString().toLong(),
+                    coffeeCk
                 ))
 
                 Navigation.findNavController(view).popBackStack()

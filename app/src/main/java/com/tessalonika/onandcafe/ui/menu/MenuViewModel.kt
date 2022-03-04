@@ -12,6 +12,8 @@ class MenuViewModel(
 
     fun getAll() = dao?.getAll()
 
+    fun getAllNonCoffee() = dao?.getAllNonCoffee()
+
     fun insert(data: Menu) {
         viewModelScope.launch {
             dao?.insert(data)
