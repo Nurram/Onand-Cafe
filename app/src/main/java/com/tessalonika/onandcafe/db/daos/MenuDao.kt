@@ -11,17 +11,17 @@ import com.tessalonika.onandcafe.model.Menu
 interface MenuDao {
 
     @Insert
-    fun insert(menu: Menu)
+    suspend fun insert(menu: Menu)
 
-    @Query("select * from menu where isCoffee='true'")
+    @Query("select * from menu where isCoffee=1")
     fun getAll(): LiveData<List<Menu>>?
 
-    @Query("select * from menu where isCoffee='false'")
+    @Query("select * from menu where isCoffee=0")
     fun getAllNonCoffee(): LiveData<List<Menu>>?
 
     @Query("select * from menu where menuId=:id")
-    fun getById(id: Int): Menu?
+    suspend fun getById(id: Int): Menu?
 
     @Delete
-    fun delete(menu: Menu)
+    suspend fun delete(menu: Menu)
 }

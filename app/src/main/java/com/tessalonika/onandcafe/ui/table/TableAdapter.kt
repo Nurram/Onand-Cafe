@@ -10,23 +10,31 @@ import com.tessalonika.onandcafe.databinding.ItemListTableBinding
 import com.tessalonika.onandcafe.model.Table
 
 class TableAdapter(
-    private val context: Context
-): RecyclerView.Adapter<TableAdapter.TableHolder>() {
+    private val context: Context,
+    private val onClick: (Table) -> Unit
+) : RecyclerView.Adapter<TableAdapter.TableHolder>() {
 
     private val tables = arrayListOf<Table>()
 
     inner class TableHolder(
         private val binding: ItemListTableBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(table: Table) {
             binding.apply {
                 tvTableName.text = table.tableName
 
                 if (table.isOccupied) cvTableCard
-                    .setCardBackgroundColor(ContextCompat.getColor(context, R.color.purple_500))
+                    .setCardBackgroundColor(
+                        ContextCompat.getColor(
+                            context,
+                            android.R.color.holo_green_dark
+                        )
+                    )
                 else cvTableCard
                     .setCardBackgroundColor(ContextCompat.getColor(context, R.color.ash))
+
+                itemView.setOnClickListener { onClick(table) }
             }
         }
     }

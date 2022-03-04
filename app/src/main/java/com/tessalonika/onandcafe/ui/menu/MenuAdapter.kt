@@ -1,44 +1,44 @@
 package com.tessalonika.onandcafe.ui.menu
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.tessalonika.onandcafe.R
 import com.tessalonika.onandcafe.databinding.ItemListMenuBinding
-import com.tessalonika.onandcafe.databinding.ItemListStockBinding
 import com.tessalonika.onandcafe.model.Menu
 
 class MenuAdapter(
     private val context: Context,
     private val onClick: (Menu) -> Unit
-): RecyclerView.Adapter<MenuAdapter.MenuHolder>() {
+) : RecyclerView.Adapter<MenuAdapter.MenuHolder>() {
 
     private val menus = arrayListOf<Menu>()
-    
+
     inner class MenuHolder(
         private val binding: ItemListMenuBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(menu: Menu) {
             binding.apply {
                 tvName.text = menu.name
-                tvPrice.text = menu.price.toString()
+                tvPrice.text = context.getString(R.string.rp, menu.price.toString())
                 ivEdit.setOnClickListener { onClick(menu) }
 
                 itemView.setOnClickListener {
                     menu.isSelected = !menu.isSelected
 
                     if (menu.isSelected) {
-                        itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.purple_200))
+                        crdMain.setBackgroundColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.purple_200
+                            )
+                        )
                     } else {
-                        itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                        crdMain.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
                     }
-
-                    Log.d("TAG", "$menus")
-                    Log.d("TAG", "${menus.filter { it.isSelected }}")
                 }
             }
         }
@@ -64,4 +64,6 @@ class MenuAdapter(
     }
 
     fun getData(): ArrayList<Menu> = menus
+
+    fun getSelectedData(): Array<Menu> = menus.filter { it.isSelected }.toTypedArray()
 }

@@ -1,6 +1,5 @@
 package com.tessalonika.onandcafe.ui.stock
 
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,13 +8,13 @@ import com.tessalonika.onandcafe.model.Stock
 
 class StockAdapter(
     private val onClick: (Stock) -> Unit
-): RecyclerView.Adapter<StockAdapter.StockHolder>() {
+) : RecyclerView.Adapter<StockAdapter.StockHolder>() {
 
     private val stocks = arrayListOf<Stock>()
-    
+
     inner class StockHolder(
         private val binding: ItemListStockBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(stock: Stock) {
             binding.apply {

@@ -3,31 +3,32 @@ package com.tessalonika.onandcafe.ui.stock.add
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.tessalonika.onandcafe.R
-import com.tessalonika.onandcafe.base.BaseFragment
 import com.tessalonika.onandcafe.base.enable
 import com.tessalonika.onandcafe.base.showToast
 import com.tessalonika.onandcafe.base.visible
-import com.tessalonika.onandcafe.databinding.FragmentStockAddBinding
+import com.tessalonika.onandcafe.databinding.ActivityStockAddBinding
 import com.tessalonika.onandcafe.model.Stock
 import com.tessalonika.onandcafe.ui.ViewModelFactory
 import com.tessalonika.onandcafe.ui.stock.StockViewModel
 
-class StockAddFragment : BaseFragment<FragmentStockAddBinding>() {
+class StockAddActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityStockAddBinding
     private lateinit var viewModel: StockViewModel
 
-    override fun getViewBinding(): FragmentStockAddBinding =
-        FragmentStockAddBinding.inflate(layoutInflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding = ActivityStockAddBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val factory = ViewModelFactory(requireActivity().application)
+        val factory = ViewModelFactory(application)
         viewModel = ViewModelProvider(this, factory)[StockViewModel::class.java]
 
-        val stock: Stock? = arguments?.getParcelable("stock")
+        val stock: Stock? = intent?.getParcelableExtra("stock")
         initUpdateUI(stock)
 
         binding.apply {
@@ -40,21 +41,21 @@ class StockAddFragment : BaseFragment<FragmentStockAddBinding>() {
 
             if (stock != null) {
                 tilStockName.editText?.setText(stock.stockName)
-                tilStockId.editText?.let { 
-                    it.setText(stock.id)
+                tilStockId.editText?.let {
+                    it.setText(stock.id.toString())
                     it.enable(false)
                 }
 
                 tilStockMetric.editText?.setText(stock.stockMetric)
-                tilStockInitial.editText?.setText(stock.stockInitialValue)
-                tilStockIn.editText?.setText(stock.stockIn)
-                tilStockOut.editText?.setText(stock.stockOut)
-                tilStockTotal.editText?.setText(stock.stockTotal)
-                
+                tilStockInitial.editText?.setText(stock.stockInitialValue.toString())
+                tilStockIn.editText?.setText(stock.stockIn.toString())
+                tilStockOut.editText?.setText(stock.stockOut.toString())
+                tilStockTotal.editText?.setText(stock.stockTotal.toString())
+
                 btnStockDelete.visible(true)
                 btnStockDelete.setOnClickListener {
                     viewModel.deleteStock(stock)
-                    Navigation.findNavController(it).popBackStack()
+                    finish()
                 }
             }
         }
@@ -76,8 +77,13 @@ class StockAddFragment : BaseFragment<FragmentStockAddBinding>() {
                 || stockInitialValueEt.isNullOrEmpty()
                 || stockInEt.isNullOrEmpty()
                 || stockOutEt.isNullOrEmpty()
-                || stockTotalEt.isNullOrEmpty())
-                showToast(requireContext(), getString(R.string.please_fill), Toast.LENGTH_SHORT)
+                || stockTotalEt.isNullOrEmpty()
+            )
+                showToast(
+                    this@StockAddActivity,
+                    getString(R.string.please_fill),
+                    Toast.LENGTH_SHORT
+                )
             else {
                 val stock = Stock(
                     stockIdEt.toString().toInt(),

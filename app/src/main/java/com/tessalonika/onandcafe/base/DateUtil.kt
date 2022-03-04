@@ -10,6 +10,11 @@ class DateUtil {
             return result.format(input)
         }
 
+        fun formatDateTime(input: Date): String {
+            val result = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+            return result.format(input)
+        }
+
         private fun formatDateMonthOnly(input: Date): String {
             val result = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
             return result.format(input)

@@ -22,13 +22,17 @@
     <string name="history">History</string>
     <string name="about">About</string>
     <string name="menu">Menu</string>
-    <string name="meja">Meja</string>
-    <string name="kategori_menu">Kategori Menu</string>
-    <string name="history_transaksi">History Transaksi</string>
-    <string name="kas">Kas</string>
-    <string name="rekap_kas">Rekap Kas</string>
+    <string name="meja">Table</string>
+    <string name="kategori_menu">Menu</string>
+    <string name="history_transaksi">Transaction History</string>
     <string name="stok_barang">Stok Barang</string>
     <string name="logout">Logout</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+
+    //Table
+    <string name="warning">Warning</string>
+    <string name="set_unoccupied">Set this table to unoccupied?</string>
 
     //Contact
     <string name="contact_us">Contact Us</string>
@@ -40,9 +44,10 @@
     <string name="id_request">ID Request</string>
     <string name="metric">Metric</string>
     <string name="initial_stock">Initial Stock</string>
-    <string name="in_stock">Int</string>
+    <string name="in_stock">In</string>
     <string name="out_stock">Out</string>
     <string name="total_stock">Total Stock</string>
+    <string name="add_stock">Add Stock</string>
 
     //Menu
     <string name="coffee">Coffee</string>
@@ -53,6 +58,8 @@
     <string name="menu_price">Price</string>
     <string name="menu_order">Order</string>
     <string name="menu_coffee">Coffee?</string>
+    <string name="order_empty">You have not select a menu!</string>
+
     //Order
     <string name="buyer_name">Buyer Name</string>
     <string name="no_table">No. Table</string>
@@ -60,13 +67,16 @@
     <string name="proceed">Proceed</string>
     <string name="rp">Rp.%s</string>
 
+    //History
+    <string name="table_">Meja %s</string>
+
     //Category
-    <string name="category">Kategori</string>
-    <string name="category_name">Nama kategori</string>
+    <string name="category">Category</string>
+    <string name="category_name">Category Name</string>
     <string name="save">Save</string>
     <string name="add_category">Add category</string>
     <string name="delete">Delete</string>
-    <string name="goods_stock">Stock Barang</string>
+    <string name="goods_stock">Goods stock</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

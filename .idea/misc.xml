@@ -12,14 +12,19 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/activity_home_admin.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.13381787088499358" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.13381787088499358" />
         <entry key="app/src/main/res/layout/appbar_admin_main.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/appbar_main.xml" value="0.15854700854700854" />
+        <entry key="app/src/main/res/layout/dialog_table.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/drawer_header.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.13381787088499358" />
         <entry key="app/src/main/res/layout/fragment_category_add.xml" value="0.13381787088499358" />
         <entry key="app/src/main/res/layout/fragment_contact.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_logout.xml" value="0.13381787088499358" />
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.13381787088499358" />
         <entry key="app/src/main/res/layout/fragment_menu_add.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_order.xml" value="0.14" />

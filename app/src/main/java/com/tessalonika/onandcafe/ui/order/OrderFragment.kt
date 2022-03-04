@@ -1,0 +1,101 @@
+package com.tessalonika.onandcafe.ui.order
+
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.tessalonika.onandcafe.R
+import com.tessalonika.onandcafe.base.BaseFragment
+import com.tessalonika.onandcafe.base.showToast
+import com.tessalonika.onandcafe.databinding.FragmentOrderBinding
+import com.tessalonika.onandcafe.model.Menu
+import com.tessalonika.onandcafe.model.Order
+import com.tessalonika.onandcafe.ui.ViewModelFactory
+import com.tessalonika.onandcafe.ui.home.HomeActivity
+import com.tessalonika.onandcafe.ui.menu.MenuActivity
+import java.util.*
+
+class OrderFragment : BaseFragment<FragmentOrderBinding>() {
+    private lateinit var adapter: OrderAdapter
+
+    override fun getViewBinding(): FragmentOrderBinding =
+        FragmentOrderBinding.inflate(layoutInflater)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val factory = ViewModelFactory(requireActivity().application)
+        val viewModel = ViewModelProvider(this, factory)[OrderViewModel::class.java]
+
+        adapter = OrderAdapter(requireContext())
+
+        viewModel.getOnError().observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) showToast(requireContext(), it, Toast.LENGTH_SHORT)
+        }
+        viewModel.getIsSuccess().observe(viewLifecycleOwner) {
+            if (it != null) {
+                val activity = activity as HomeActivity
+                activity.changeFragment(OrderFragment(), R.string.menu_order)
+            }
+        }
+
+        binding.apply {
+            rvMenus.adapter = adapter
+            rvMenus.layoutManager = LinearLayoutManager(requireContext())
+
+            btnAddMenu.setOnClickListener {
+                val i = Intent(requireContext(), MenuActivity::class.java)
+                result.launch(i)
+            }
+
+            btnOrder.setOnClickListener {
+                val buyerName = tilName.editText?.text
+                val priceTotal = tilCash.editText?.text
+                val tableNo = tilTableNo.editText?.text
+
+                if (buyerName.isNullOrEmpty() ||
+                    priceTotal.isNullOrEmpty() ||
+                    tableNo.isNullOrEmpty()
+                ) {
+                    showToast(requireContext(), getString(R.string.please_fill), Toast.LENGTH_SHORT)
+                } else if (adapter.getMenus().isEmpty()) {
+                    showToast(requireContext(), getString(R.string.order_empty), Toast.LENGTH_SHORT)
+                } else {
+                    val order = Order(
+                        0,
+                        buyerName.toString(),
+                        "Tunai",
+                        Date(),
+                        priceTotal.toString().toLong(),
+                        tableNo.toString()
+                    )
+
+                    adapter.getMenus().forEach { menu ->
+                        viewModel.insertOrder(order, menu.menuId)
+                    }
+                }
+            }
+        }
+    }
+
+    private val result =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                val menus = it.data?.getParcelableArrayExtra("menus")
+                menus?.forEach { menu ->
+                    menu as Menu
+
+                    val datas = adapter.getIds()
+
+                    if (!datas.contains(menu.menuId)) {
+                        adapter.addData(menu)
+                    }
+                }
+            }
+        }
+
+}

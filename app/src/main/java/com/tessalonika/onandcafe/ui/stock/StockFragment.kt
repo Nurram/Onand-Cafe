@@ -1,14 +1,14 @@
 package com.tessalonika.onandcafe.ui.stock
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import com.tessalonika.onandcafe.R
 import com.tessalonika.onandcafe.base.BaseFragment
 import com.tessalonika.onandcafe.databinding.FragmentStockBinding
 import com.tessalonika.onandcafe.ui.ViewModelFactory
+import com.tessalonika.onandcafe.ui.stock.add.StockAddActivity
 
 class StockFragment : BaseFragment<FragmentStockBinding>() {
 
@@ -19,12 +19,9 @@ class StockFragment : BaseFragment<FragmentStockBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = StockAdapter {
-            val bundle = Bundle()
-            bundle.putParcelable("stock", it)
-
-            Navigation
-                .findNavController(view)
-                .navigate(R.id.action_menu_category_to_categoryAddFragment, bundle)
+            val i = Intent(requireActivity(), StockAddActivity::class.java)
+            i.putExtra("stock", it)
+            startActivity(i)
         }
 
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
@@ -37,7 +34,8 @@ class StockFragment : BaseFragment<FragmentStockBinding>() {
         }
 
         binding.fabStockCategory.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_menu_category_to_categoryAddFragment)
+            val i = Intent(requireActivity(), StockAddActivity::class.java)
+            startActivity(i)
         }
     }
 }

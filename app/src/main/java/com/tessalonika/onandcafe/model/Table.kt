@@ -4,7 +4,7 @@ import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName= "table")
+@Entity(tableName = "table")
 data class Table(
     @PrimaryKey
     @NonNull

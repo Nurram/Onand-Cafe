@@ -1,25 +1,29 @@
 package com.tessalonika.onandcafe.ui.history
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.tessalonika.onandcafe.R
 import com.tessalonika.onandcafe.base.DateUtil
 import com.tessalonika.onandcafe.databinding.ItemListDateBinding
 import com.tessalonika.onandcafe.databinding.ItemListHistoryBinding
-import com.tessalonika.onandcafe.model.OrderWithMenu
+import com.tessalonika.onandcafe.model.Order
 import java.util.*
 
-class HistoryAdapter() : ListAdapter<OrderWithMenu, RecyclerView.ViewHolder>(DIFF_UTIL) {
+class HistoryAdapter(
+    private val context: Context
+) : ListAdapter<Order, RecyclerView.ViewHolder>(DIFF_UTIL) {
 
     companion object {
-        private val DIFF_UTIL = object : DiffUtil.ItemCallback<OrderWithMenu>() {
-            override fun areItemsTheSame(oldItem: OrderWithMenu, newItem: OrderWithMenu): Boolean =
-                oldItem.order.orderId == newItem.order.orderId
+        private val DIFF_UTIL = object : DiffUtil.ItemCallback<Order>() {
+            override fun areItemsTheSame(oldItem: Order, newItem: Order): Boolean =
+                oldItem.orderId == newItem.orderId
 
-            override fun areContentsTheSame(oldItem: OrderWithMenu, newItem: OrderWithMenu): Boolean =
+            override fun areContentsTheSame(oldItem: Order, newItem: Order): Boolean =
                 oldItem == newItem
 
         }
@@ -55,7 +59,7 @@ class HistoryAdapter() : ListAdapter<OrderWithMenu, RecyclerView.ViewHolder>(DIF
                 p0.bind(data)
             } else {
                 p0 as DateHolder
-                p0.bind(data.order.orderDate)
+                p0.bind(data.orderDate)
             }
         }
     }
@@ -63,20 +67,20 @@ class HistoryAdapter() : ListAdapter<OrderWithMenu, RecyclerView.ViewHolder>(DIF
     inner class MainHolder(private val binding: ItemListHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(orderWithMenu1: OrderWithMenu) {
+        fun bind(order: Order) {
             binding.apply {
-                val order = orderWithMenu1.order
-                tvDate.text = order.orderDate.toString()
+                tvDate.text = DateUtil.formatDateTime(order.orderDate)
                 tvId.text = order.orderId.toString()
                 tvPayment.text = order.paymentType
-                tvPriceTotal.text = order.totalPrice.toString()
-                tvTable.text = order.tableNo
+                tvPriceTotal.text = context.getString(R.string.rp, order.totalPrice.toString())
+                tvTable.text = context.getString(R.string.table_, order.tableNo)
             }
         }
     }
 
     inner class DateHolder(private val binding: ItemListDateBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(date: Date) {
             binding.itemDate.text = DateUtil.formatDate(date)
         }

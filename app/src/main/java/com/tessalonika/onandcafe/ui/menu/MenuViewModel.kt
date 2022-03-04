@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 class MenuViewModel(
     private val dao: MenuDao?
-): BaseViewModel<Menu>() {
+) : BaseViewModel<Menu>() {
 
     fun getAll() = dao?.getAll()
 

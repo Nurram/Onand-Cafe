@@ -7,7 +7,10 @@ import androidx.room.RoomDatabase
 import com.tessalonika.onandcafe.db.daos.*
 import com.tessalonika.onandcafe.model.*
 
-@Database(entities = [User::class, Table::class, Stock::class, Menu::class, Order::class], version = 1)
+@Database(
+    entities = [User::class, Table::class, Stock::class, Menu::class, Order::class, OrderMenuCrossRef::class],
+    version = 1
+)
 abstract class MainDb : RoomDatabase() {
     abstract val userDao: UserDao
     abstract val tableDao: TableDao

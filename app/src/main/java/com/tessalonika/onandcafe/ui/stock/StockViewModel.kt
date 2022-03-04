@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 class StockViewModel(
     private val stockDao: StockDao?
-): BaseViewModel<List<Stock>>() {
+) : BaseViewModel<List<Stock>>() {
 
     fun getStocks() = stockDao?.getStocks()
 

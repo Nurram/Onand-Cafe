@@ -18,14 +18,19 @@ fun checkIsEmailValid(email: CharSequence): Boolean {
     return m.matches()
 }
 
-fun invalidateAuthForm(context: Context, username: String, email: String, password: String): Boolean {
-    return if(username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+fun invalidateAuthForm(
+    context: Context,
+    username: String,
+    email: String,
+    password: String
+): Boolean {
+    return if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
         showToast(context, context.getString(R.string.please_fill), Toast.LENGTH_SHORT)
         false
     } else if (!checkIsEmailValid(email)) {
-        showToast(context, context.getString(R.string.enter_valid_email),  Toast.LENGTH_SHORT)
+        showToast(context, context.getString(R.string.enter_valid_email), Toast.LENGTH_SHORT)
         false
-    } else if(password.length < 6) {
+    } else if (password.length < 6) {
         showToast(context, context.getString(R.string.password_short), Toast.LENGTH_SHORT)
         false
     } else {
@@ -34,7 +39,7 @@ fun invalidateAuthForm(context: Context, username: String, email: String, passwo
 }
 
 fun View.visible(value: Boolean) {
-    if(value) this.visibility = View.VISIBLE
+    if (value) this.visibility = View.VISIBLE
     else this.visibility = View.GONE
 }
 

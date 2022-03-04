@@ -6,16 +6,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.tessalonika.onandcafe.base.PrefUtils
 import com.tessalonika.onandcafe.db.MainDb
 import com.tessalonika.onandcafe.ui.history.HistoryViewModel
+import com.tessalonika.onandcafe.ui.home.HomeViewModel
 import com.tessalonika.onandcafe.ui.login.LoginViewModel
 import com.tessalonika.onandcafe.ui.menu.MenuViewModel
-import com.tessalonika.onandcafe.ui.menu.order.OrderViewModel
+import com.tessalonika.onandcafe.ui.order.OrderViewModel
 import com.tessalonika.onandcafe.ui.register.RegisterViewModel
 import com.tessalonika.onandcafe.ui.stock.StockViewModel
 import com.tessalonika.onandcafe.ui.table.TableViewModel
 
 class ViewModelFactory(
     private val application: Application
-): ViewModelProvider.NewInstanceFactory() {
+) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         val db = MainDb.getDb(application)
@@ -47,7 +48,7 @@ class ViewModelFactory(
                 return MenuViewModel(menuDao) as T
 
             modelClass.isAssignableFrom(OrderViewModel::class.java) ->
-                return OrderViewModel(orderWithMenuDao) as T
+                return OrderViewModel(orderWithMenuDao, tableDao) as T
 
             modelClass.isAssignableFrom(HistoryViewModel::class.java) ->
                 return HistoryViewModel(orderWithMenuDao) as T

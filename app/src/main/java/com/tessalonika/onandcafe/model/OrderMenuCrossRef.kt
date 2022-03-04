@@ -4,6 +4,6 @@ import androidx.room.Entity
 
 @Entity(primaryKeys = ["orderId", "menuId"])
 data class OrderMenuCrossRef(
-    val orderId: Int,
-    val menuId: Int
+    val orderId: Long,
+    val menuId: Long
 )

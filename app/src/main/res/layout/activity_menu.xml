@@ -22,25 +22,22 @@
             android:id="@+id/btn_coffee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/coffee"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="@android:color/holo_orange_dark"/>
+            android:backgroundTint="@color/ash"
+            android:text="@string/coffee" />
 
         <Button
             android:id="@+id/btn_non_coffee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/non_coffee"
-            android:backgroundTint="@color/ash"/>
+            android:text="@string/non_coffee" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_menu"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

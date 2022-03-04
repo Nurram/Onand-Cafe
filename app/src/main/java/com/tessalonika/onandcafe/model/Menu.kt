@@ -10,14 +10,16 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "menu")
 data class Menu(
     @PrimaryKey(autoGenerate = true)
-    val menuId: Int,
+    val menuId: Long,
     val category: String,
     val name: String,
     val description: String,
     val price: Long,
     val isCoffee: Boolean,
+) : Parcelable {
     @Ignore
-    var isSelected: Boolean = false,
+    var isSelected: Boolean = false
+
     @Ignore
     var qty: Int = 1
-): Parcelable
+}

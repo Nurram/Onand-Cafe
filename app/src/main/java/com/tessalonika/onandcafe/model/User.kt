@@ -22,4 +22,4 @@ data class User(
     val isAdmin: Boolean,
     val createdDate: Date = Date(),
     val updatedDate: Date = Date()
-): Parcelable
+) : Parcelable

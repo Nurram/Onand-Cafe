@@ -10,12 +10,13 @@ import kotlinx.coroutines.launch
 class LoginViewModel(
     private val userDao: UserDao?,
     private val prefUtils: PrefUtils
-): BaseViewModel<User>() {
+) : BaseViewModel<User>() {
 
     init {
         viewModelScope.launch {
             userDao?.insertUser(
-                User(0, "admin", "admin@admin.com", "admin123", true))
+                User(0, "admin", "admin@admin.com", "admin123", true)
+            )
         }
     }
 

@@ -32,6 +32,10 @@ class PrefUtils(context: Context, private var prefKey: String) {
         return preferences.getBoolean(key, false)
     }
 
+    fun removeFromPref(key: String) {
+        preferences.edit().remove(key).apply()
+    }
+
     companion object {
         const val AUTH_PREF = "auth_pref"
         const val AUTH_ID_PREF = "auth_id_pref"

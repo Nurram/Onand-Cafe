@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-open class BaseViewModel<T>: ViewModel() {
+open class BaseViewModel<T> : ViewModel() {
     internal val isLoading = MutableLiveData(false)
     internal val isSuccess = MutableLiveData<T>()
     internal val onError = MutableLiveData("")

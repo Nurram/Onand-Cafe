@@ -1,7 +1,6 @@
-package com.tessalonika.onandcafe.ui.menu.order
+package com.tessalonika.onandcafe.ui.order
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,36 +10,38 @@ import com.tessalonika.onandcafe.model.Menu
 
 class OrderAdapter(
     private val context: Context
-): RecyclerView.Adapter<OrderAdapter.OrderHolder>() {
+) : RecyclerView.Adapter<OrderAdapter.OrderHolder>() {
     private val menus = arrayListOf<Menu>()
+    private val menuIds = arrayListOf<Long>()
 
     inner class OrderHolder(
         private val binding: ItemListOrderBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(menu: Menu) {
             binding.apply {
                 tvName.text = menu.name
 
                 if (menu.name.length > 1) {
-                    tvStockInitial.text = menu.name.slice(0..2)
-                } else {
                     tvStockInitial.text = menu.name.slice(0..1)
+                } else {
+                    tvStockInitial.text = menu.name[0].toString()
                 }
 
-                tvPrice.text = context.getString(R.string.rp,  menu.price.toString())
+                tvPrice.text = context.getString(R.string.rp, menu.price.toString())
+                tvQty.text = menu.qty.toString()
 
-                ibAdd.setOnClickListener { changeQty(1) }
-                ibReduce.setOnClickListener { changeQty(-1) }
+                ibAdd.setOnClickListener { changeQty(1, menu.price) }
+                ibReduce.setOnClickListener { changeQty(-1, menu.price) }
                 ibDelete.setOnClickListener { removeData(adapterPosition) }
-                Log.d("TAG", "$adapterPosition, $layoutPosition")
             }
         }
 
-        private fun changeQty(value: Int) {
+        private fun changeQty(value: Int, price: Long) {
             var qty = binding.tvQty.text.toString().toInt()
             qty += value
 
             binding.tvQty.text = qty.toString()
+            binding.tvPrice.text = context.getString(R.string.rp, (price * qty).toString())
         }
 
         private fun removeData(position: Int) {
@@ -58,27 +59,16 @@ class OrderAdapter(
 
     override fun onBindViewHolder(holder: OrderHolder, position: Int) {
         holder.bind(menus[position])
+        menuIds.add(menus[position].menuId)
     }
 
     override fun getItemCount(): Int = menus.size
 
-     fun addData(menu: Menu) {
+    fun addData(menu: Menu) {
         menus.add(menu)
         notifyItemChanged(menus.size - 1)
     }
 
-    fun getTotalPrice(): Long {
-        var total = 0L
-
-        menus.forEach {
-            total += (it.price * it.qty)
-        }
-
-        return total
-    }
-
-    fun clearData() {
-        menus.clear()
-        notifyDataSetChanged()
-    }
+    fun getMenus(): List<Menu> = menus
+    fun getIds(): List<Long> = menuIds
 }

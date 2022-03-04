@@ -1,7 +1,6 @@
 package com.tessalonika.onandcafe.model
 
 import android.os.Parcelable
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
@@ -17,4 +16,4 @@ data class Stock(
     var stockIn: Int,
     var stockOut: Int,
     var stockTotal: Int,
-): Parcelable
+) : Parcelable
