@@ -1,19 +1,25 @@
 package com.tessalonika.onandcafe.ui.history
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tessalonika.onandcafe.model.OrderMenuCrossRef
+import androidx.viewbinding.ViewBinding
+import com.tessalonika.onandcafe.base.DateUtil
+import com.tessalonika.onandcafe.databinding.ItemListDateBinding
+import com.tessalonika.onandcafe.databinding.ItemListHistoryBinding
+import com.tessalonika.onandcafe.model.OrderWithMenu
+import java.util.*
 
-class HistoryAdapter() : ListAdapter<OrderMenuCrossRef, RecyclerView.ViewHolder>(DIFF_UTIL) {
-    var date: Date? = null
+class HistoryAdapter() : ListAdapter<OrderWithMenu, RecyclerView.ViewHolder>(DIFF_UTIL) {
 
     companion object {
-        private val DIFF_UTIL = object : DiffUtil.ItemCallback<OrderMenuCrossRef>() {
-            override fun areItemsTheSame(oldItem: OrderMenuCrossRef, newItem: OrderMenuCrossRef): Boolean =
-                oldItem.id == newItem.id
+        private val DIFF_UTIL = object : DiffUtil.ItemCallback<OrderWithMenu>() {
+            override fun areItemsTheSame(oldItem: OrderWithMenu, newItem: OrderWithMenu): Boolean =
+                oldItem.order.orderId == newItem.order.orderId
 
-            override fun areContentsTheSame(oldItem: OrderMenuCrossRef, newItem: OrderMenuCrossRef): Boolean =
+            override fun areContentsTheSame(oldItem: OrderWithMenu, newItem: OrderWithMenu): Boolean =
                 oldItem == newItem
 
         }
@@ -28,15 +34,15 @@ class HistoryAdapter() : ListAdapter<OrderMenuCrossRef, RecyclerView.ViewHolder>
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
-        val inflater = LayoutInflater.from(context)
+        val inflater = LayoutInflater.from(p0.context)
         val binding: ViewBinding
 
         if (p1 == 0) {
-            binding = ItemRowBinding.inflate(inflater, p0, false)
+            binding = ItemListHistoryBinding.inflate(inflater, p0, false)
             return MainHolder(binding)
         }
 
-        binding = ItemDateBinding.inflate(inflater, p0, false)
+        binding = ItemListDateBinding.inflate(inflater, p0, false)
         return DateHolder(binding)
     }
 
@@ -46,50 +52,30 @@ class HistoryAdapter() : ListAdapter<OrderMenuCrossRef, RecyclerView.ViewHolder>
         if (data != null) {
             if (p0.itemViewType == 0) {
                 p0 as MainHolder
-                p0.bind(data, clickUtils)
+                p0.bind(data)
             } else {
                 p0 as DateHolder
-                p0.bind(data.date!!)
+                p0.bind(data.order.orderDate)
             }
         }
     }
 
-    inner class MainHolder(private val binding: ItemRowBinding) :
+    inner class MainHolder(private val binding: ItemListHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private lateinit var record: OrderMenuCrossRef
 
-        fun bind(record: OrderMenuCrossRef, clickUtils: (OrderMenuCrossRef, View) -> Unit) {
-            this.record = record
-
+        fun bind(orderWithMenu1: OrderWithMenu) {
             binding.apply {
-                itemTitle.text = record.judul
-                itemDesc.text = record.note
-                itemView.setOnClickListener { clickUtils(record, binding.root) }
-
-                if (record.note.isNotEmpty()) itemDesc.VISIBLE()
-
-                when (record.description) {
-                    AddDataActivity.INCOME -> {
-                        itemUang.text =
-                            context.getString(R.string.plus_value, convertAndFormat(record.total))
-                        itemUang.setTextColor(ContextCompat.getColor(context, R.color.colorAccent))
-                    }
-                    AddDataActivity.EXPENSE -> {
-                        itemUang.text =
-                            context.getString(R.string.minus_value, convertAndFormat(record.total))
-                        itemUang.setTextColor(ContextCompat.getColor(context, R.color.colorRed))
-                    }
-                    else -> {
-                        itemUang.text =
-                            context.getString(R.string.minus_value, convertAndFormat(record.total))
-                        itemUang.setTextColor(ContextCompat.getColor(context, R.color.colorGreen))
-                    }
-                }
+                val order = orderWithMenu1.order
+                tvDate.text = order.orderDate.toString()
+                tvId.text = order.orderId.toString()
+                tvPayment.text = order.paymentType
+                tvPriceTotal.text = order.totalPrice.toString()
+                tvTable.text = order.tableNo
             }
         }
     }
 
-    inner class DateHolder(private val binding: ItemDateBinding) :
+    inner class DateHolder(private val binding: ItemListDateBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(date: Date) {
             binding.itemDate.text = DateUtil.formatDate(date)
