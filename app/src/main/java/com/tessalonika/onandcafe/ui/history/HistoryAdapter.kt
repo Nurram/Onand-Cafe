@@ -70,7 +70,7 @@ class HistoryAdapter(
         fun bind(order: Order) {
             binding.apply {
                 tvDate.text = DateUtil.formatDateTime(order.orderDate)
-                tvId.text = order.orderId.toString()
+                tvId.text = order.id
                 tvPayment.text = order.paymentType
                 tvPriceTotal.text = context.getString(R.string.rp, order.totalPrice.toString())
                 tvTable.text = context.getString(R.string.table_, order.tableNo)

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tessalonika.onandcafe.base.BaseViewModel
+import com.tessalonika.onandcafe.base.DateUtil
 import com.tessalonika.onandcafe.db.daos.OrderWithMenuDao
 import com.tessalonika.onandcafe.db.daos.TableDao
 import com.tessalonika.onandcafe.model.Order
@@ -29,12 +30,23 @@ class OrderViewModel(
                     onError.postValue("Table are already occupied!")
                 }
                 else -> {
-                    orderId.postValue(dao?.insert(value))
+                    val response = dao?.insert(value)
+
+                    if (response != null) {
+                        orderId.postValue(response!!)
+
+                        val idToShow = "$response/OC/${DateUtil.formatDate(value.orderDate)}"
+                        dao?.setId(idToShow, response)
+                    }
                 }
             }
         }
 
         return orderId
+    }
+
+    fun setIdToShow(orderId: Long) {
+
     }
 
     fun insertOrderWithMenu(orderId: Long, menuId: Long, tableNo: Int) {

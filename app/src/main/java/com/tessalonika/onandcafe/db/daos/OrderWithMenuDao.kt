@@ -16,4 +16,7 @@ interface OrderWithMenuDao {
     @Transaction
     @Query("select * from `order` order by orderDate desc")
     suspend fun getAll(): List<Order>
+
+    @Query("update `order` set id=:id where orderId=:orderId")
+    suspend fun setId(id: String, orderId: Long)
 }
