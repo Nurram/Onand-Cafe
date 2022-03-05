@@ -2,12 +2,14 @@ package com.tessalonika.onandcafe.ui.table
 
 import androidx.lifecycle.viewModelScope
 import com.tessalonika.onandcafe.base.BaseViewModel
+import com.tessalonika.onandcafe.base.PrefUtils
 import com.tessalonika.onandcafe.db.daos.TableDao
 import com.tessalonika.onandcafe.model.Table
 import kotlinx.coroutines.launch
 
 class TableViewModel(
-    private val tableDao: TableDao?
+    private val tableDao: TableDao?,
+    private val prefUtils: PrefUtils
 ) : BaseViewModel<List<Table>>() {
 
     fun getTables() = tableDao?.getTables()
@@ -30,4 +32,6 @@ class TableViewModel(
             tableDao?.setUnOccupied(id)
         }
     }
+
+    fun getIsAdmin(): Boolean = prefUtils.getFromPrefBoolean(PrefUtils.AUTH_ADMIN_PREF)
 }

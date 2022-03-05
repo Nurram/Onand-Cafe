@@ -26,11 +26,7 @@ class LoginActivity : AppCompatActivity() {
         val factory = ViewModelFactory(application)
         viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
 
-        if (viewModel.isLoggedIn()) {
-            if (viewModel.isAdmin()) {
-                moveToHome()
-            }
-        }
+        if (viewModel.isLoggedIn()) moveToHome()
 
         binding.apply {
             viewModel.getIsLoading().observe(this@LoginActivity) {
@@ -44,11 +40,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             viewModel.getIsSuccess().observe(this@LoginActivity) {
-                if (it != null) {
-                    if (it.isAdmin) {
-                        moveToHome()
-                    }
-                }
+                if (it != null) moveToHome()
             }
 
             btnLoginRegister.setOnClickListener {

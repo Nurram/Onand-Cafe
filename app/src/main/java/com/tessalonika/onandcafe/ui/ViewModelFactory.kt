@@ -39,13 +39,13 @@ class ViewModelFactory(
                 return HomeViewModel(userDao, prefUtil) as T
 
             modelClass.isAssignableFrom(TableViewModel::class.java) ->
-                return TableViewModel(tableDao) as T
+                return TableViewModel(tableDao, prefUtil) as T
 
             modelClass.isAssignableFrom(StockViewModel::class.java) ->
                 return StockViewModel(stockDao) as T
 
             modelClass.isAssignableFrom(MenuViewModel::class.java) ->
-                return MenuViewModel(menuDao) as T
+                return MenuViewModel(menuDao, prefUtil) as T
 
             modelClass.isAssignableFrom(OrderViewModel::class.java) ->
                 return OrderViewModel(orderWithMenuDao, tableDao) as T

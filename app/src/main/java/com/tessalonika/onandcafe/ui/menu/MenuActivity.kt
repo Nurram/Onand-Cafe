@@ -82,6 +82,8 @@ class MenuActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         super.onCreateOptionsMenu(menu)
+
+        if (viewModel.getIsAdmin())
         menuInflater.inflate(R.menu.menu_toolbar, menu)
 
         return true

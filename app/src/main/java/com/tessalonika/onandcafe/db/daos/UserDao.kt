@@ -2,13 +2,14 @@ package com.tessalonika.onandcafe.db.daos
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.tessalonika.onandcafe.model.User
 
 @Dao
 interface UserDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User): Long
 
     @Query("select count(*) from user where username=:value or email=:value")

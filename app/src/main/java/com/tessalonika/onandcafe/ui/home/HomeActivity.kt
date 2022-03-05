@@ -50,12 +50,12 @@ class HomeActivity : AppCompatActivity() {
             username.text = it.username
 
             isAdmin = it.isAdmin
+            navView.menu.clear()
 
-            if (isAdmin) {
-                navView.menu.clear()
-                navView.inflateMenu(R.menu.drawer_menu)
-                navView.setCheckedItem(R.id.menu_meja)
-            }
+            if (isAdmin) navView.inflateMenu(R.menu.drawer_menu)
+            else navView.inflateMenu(R.menu.drawer_menu_barista)
+
+            navView.setCheckedItem(R.id.menu_meja)
         }
 
         changeFragment(TableFragment(), R.string.meja)

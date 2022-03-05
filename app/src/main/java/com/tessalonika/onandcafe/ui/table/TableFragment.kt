@@ -19,7 +19,9 @@ class TableFragment : BaseFragment<FragmentTableBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = TableAdapter(requireContext()) { showDialog(it.id) }
+        val adapter = TableAdapter(requireContext()) {
+            if (viewModel.getIsAdmin()) showDialog(it.id)
+        }
 
         binding.rvTables.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvTables.adapter = adapter
