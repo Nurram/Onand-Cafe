@@ -1,13 +1,10 @@
 package com.tessalonika.onandcafe.ui.stock.add
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import com.tessalonika.onandcafe.R
 import com.tessalonika.onandcafe.base.enable
 import com.tessalonika.onandcafe.base.showToast
@@ -50,7 +47,7 @@ class StockAddActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(item.itemId == android.R.id.home) {
+        if (item.itemId == android.R.id.home) {
             finish()
         }
 
@@ -118,11 +115,10 @@ class StockAddActivity : AppCompatActivity() {
                     stockTotalEt.toString().toInt()
                 )
 
-                if(isUpdate) {
+                if (isUpdate) {
                     viewModel.updateStock(stock)
                     finish()
-                }
-                else viewModel.insertStock(stock)
+                } else viewModel.insertStock(stock)
             }
         }
     }

@@ -2,7 +2,6 @@ package com.tessalonika.onandcafe.ui.menu.add
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -57,7 +56,7 @@ class MenuAddActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(item.itemId == android.R.id.home) {
+        if (item.itemId == android.R.id.home) {
             finish()
         }
 

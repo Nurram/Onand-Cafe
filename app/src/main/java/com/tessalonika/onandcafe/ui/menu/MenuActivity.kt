@@ -84,7 +84,7 @@ class MenuActivity : AppCompatActivity() {
         super.onCreateOptionsMenu(menu)
 
         if (viewModel.getIsAdmin())
-        menuInflater.inflate(R.menu.menu_toolbar, menu)
+            menuInflater.inflate(R.menu.menu_toolbar, menu)
 
         return true
     }
@@ -93,7 +93,7 @@ class MenuActivity : AppCompatActivity() {
         if (item.itemId == R.id.menu_add) {
             val i = Intent(this, MenuAddActivity::class.java)
             startActivity(i)
-        } else if(item.itemId == android.R.id.home) {
+        } else if (item.itemId == android.R.id.home) {
             finish()
         }
 

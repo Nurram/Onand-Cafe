@@ -3,7 +3,6 @@ package com.tessalonika.onandcafe.ui.order
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tessalonika.onandcafe.R
 import com.tessalonika.onandcafe.base.BaseFragment
-import com.tessalonika.onandcafe.base.DateUtil
 import com.tessalonika.onandcafe.base.showToast
 import com.tessalonika.onandcafe.databinding.FragmentOrderBinding
 import com.tessalonika.onandcafe.model.Menu
@@ -117,8 +115,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>() {
 
                         if (etCash?.text.isNullOrEmpty()) {
                             etCash?.setText(menu.price.toString())
-                        }
-                        else {
+                        } else {
                             var currentValue = etCash?.text.toString().toLong()
                             currentValue += menu.price
                             etCash?.setText(currentValue.toString())

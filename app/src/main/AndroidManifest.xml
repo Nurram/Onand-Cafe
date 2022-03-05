@@ -15,31 +15,31 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.register.RegisterActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.menu.MenuActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".ui.home.HomeActivity"/>
+            android:parentActivityName=".ui.home.HomeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.menu.add.MenuAddActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".ui.menu.MenuActivity"/>
+            android:parentActivityName=".ui.menu.MenuActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.stock.add.StockAddActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".ui.home.HomeActivity"/>
+            android:parentActivityName=".ui.home.HomeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"

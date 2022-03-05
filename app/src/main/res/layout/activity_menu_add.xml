@@ -15,10 +15,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
-            app:title="@string/add_menu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/add_menu" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_menu_category"
