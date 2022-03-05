@@ -2,7 +2,10 @@ package com.tessalonika.onandcafe.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -11,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
 import com.tessalonika.onandcafe.R
+import com.tessalonika.onandcafe.base.showToast
 import com.tessalonika.onandcafe.databinding.ActivityHomeBinding
 import com.tessalonika.onandcafe.ui.ViewModelFactory
 import com.tessalonika.onandcafe.ui.history.HistoryFragment
@@ -21,6 +25,7 @@ import com.tessalonika.onandcafe.ui.table.TableFragment
 
 class HomeActivity : AppCompatActivity() {
     private var isAdmin = false
+    private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +84,22 @@ class HomeActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
+    }
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        doubleBackToExitPressedOnce = true
+        showToast(this, getString(R.string.press_back_to_exit), Toast.LENGTH_SHORT)
+
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                doubleBackToExitPressedOnce = false
+            }, 2000
+        )
     }
 
     fun changeFragment(fragment: Fragment, title: Int) {

@@ -29,6 +29,7 @@
     <string name="logout">Logout</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
+    <string name="press_back_to_exit">Press back again to exit!</string>
 
     //Table
     <string name="warning">Warning</string>
