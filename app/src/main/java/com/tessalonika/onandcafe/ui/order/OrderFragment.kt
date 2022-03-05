@@ -3,7 +3,9 @@ package com.tessalonika.onandcafe.ui.order
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +23,7 @@ import java.util.*
 
 class OrderFragment : BaseFragment<FragmentOrderBinding>() {
     private lateinit var adapter: OrderAdapter
+    private var etCash: EditText? = null
 
     override fun getViewBinding(): FragmentOrderBinding =
         FragmentOrderBinding.inflate(layoutInflater)
@@ -31,7 +34,18 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>() {
         val factory = ViewModelFactory(requireActivity().application)
         val viewModel = ViewModelProvider(this, factory)[OrderViewModel::class.java]
 
-        adapter = OrderAdapter(requireContext())
+        etCash = binding.tilCash.editText
+        adapter = OrderAdapter(requireContext()) { totalPrice, isAdd ->
+            var currentTotalPrice = etCash?.text.toString().toLong()
+
+            if (isAdd) {
+                currentTotalPrice += totalPrice
+            } else {
+                currentTotalPrice -= totalPrice
+            }
+
+            etCash?.setText(currentTotalPrice.toString())
+        }
 
         viewModel.getOnError().observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) showToast(requireContext(), it, Toast.LENGTH_SHORT)
@@ -86,14 +100,26 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 val menus = it.data?.getParcelableArrayExtra("menus")
+                var currentTotalPrice = 0L
+
                 menus?.forEach { menu ->
                     menu as Menu
 
+                    currentTotalPrice += menu.price
                     val datas = adapter.getIds()
 
                     if (!datas.contains(menu.menuId)) {
                         adapter.addData(menu)
                     }
+                }
+
+                if (etCash?.text.isNullOrEmpty()) {
+                    etCash?.setText(currentTotalPrice.toString())
+                }
+                else {
+                    var currentValue = etCash?.text.toString().toLong()
+                    currentValue += currentTotalPrice
+                    etCash?.setText(currentValue.toString())
                 }
             }
         }

@@ -24,6 +24,6 @@ interface TableDao {
     @Query("update `table` set isOccupied=0 where id=:id")
     suspend fun setUnOccupied(id: Int)
 
-    @Query("select isOccupied from `table` where id=:id")
-    suspend fun getIsOccupied(id: Int): Int
+    @Query("select * from `table` where id=:id")
+    suspend fun getTableById(id: Int): Table
 }

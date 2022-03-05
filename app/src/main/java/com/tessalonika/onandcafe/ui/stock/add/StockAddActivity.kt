@@ -1,6 +1,7 @@
 package com.tessalonika.onandcafe.ui.stock.add
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,8 @@ class StockAddActivity : AppCompatActivity() {
 
         binding = ActivityStockAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.tbStockAdd)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val factory = ViewModelFactory(application)
         viewModel = ViewModelProvider(this, factory)[StockViewModel::class.java]
@@ -34,6 +37,15 @@ class StockAddActivity : AppCompatActivity() {
         binding.apply {
             btnStockSave.setOnClickListener { saveStock(it) }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == android.R.id.home) {
+            finish()
+        }
+
+        return true
     }
 
     private fun initUpdateUI(stock: Stock?) {

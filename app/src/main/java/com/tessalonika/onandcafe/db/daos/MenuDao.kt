@@ -1,16 +1,13 @@
 package com.tessalonika.onandcafe.db.daos
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.tessalonika.onandcafe.model.Menu
 
 @Dao
 interface MenuDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(menu: Menu)
 
     @Query("select * from menu where isCoffee=1")

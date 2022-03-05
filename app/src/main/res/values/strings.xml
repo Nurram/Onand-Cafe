@@ -66,6 +66,7 @@
     <string name="cash">Total Cash</string>
     <string name="proceed">Proceed</string>
     <string name="rp">Rp.%s</string>
+    <string name="rp_">Rp.</string>
 
     //History
     <string name="table_">Meja %s</string>

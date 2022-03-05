@@ -23,6 +23,8 @@ class MenuActivity : AppCompatActivity() {
 
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.tbMenu)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         adapter = MenuAdapter(this@MenuActivity) {
             val i = Intent(this, MenuAddActivity::class.java)
@@ -89,6 +91,8 @@ class MenuActivity : AppCompatActivity() {
         if (item.itemId == R.id.menu_add) {
             val i = Intent(this, MenuAddActivity::class.java)
             startActivity(i)
+        } else if(item.itemId == android.R.id.home) {
+            finish()
         }
 
         return true

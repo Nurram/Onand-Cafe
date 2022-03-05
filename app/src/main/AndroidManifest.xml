@@ -35,13 +35,16 @@
             android:exported="true" />
         <activity
             android:name=".ui.menu.MenuActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".ui.home.HomeActivity"/>
         <activity
             android:name=".ui.menu.add.MenuAddActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".ui.menu.MenuActivity"/>
         <activity
             android:name=".ui.stock.add.StockAddActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".ui.home.HomeActivity"/>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">

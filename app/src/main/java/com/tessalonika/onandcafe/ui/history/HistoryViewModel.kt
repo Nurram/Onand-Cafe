@@ -32,6 +32,7 @@ class HistoryViewModel(
                     date = formattedDate
 
                     val itemOrder = Order(orderDate = orders[i].orderDate)
+                    itemOrder.type = 1
                     orders.add(i, itemOrder)
                 } else {
                     i++

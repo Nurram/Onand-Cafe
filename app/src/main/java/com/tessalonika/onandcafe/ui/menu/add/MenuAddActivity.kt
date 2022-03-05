@@ -1,6 +1,7 @@
 package com.tessalonika.onandcafe.ui.menu.add
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,9 @@ class MenuAddActivity : AppCompatActivity() {
         binding = ActivityMenuAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.tbMenuAdd)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val factory = ViewModelFactory(application)
         viewModel = ViewModelProvider(this, factory)[MenuViewModel::class.java]
 
@@ -43,7 +47,7 @@ class MenuAddActivity : AppCompatActivity() {
         }
 
         binding.apply {
-            btnMenuSave.setOnClickListener { saveData(it) }
+            btnMenuSave.setOnClickListener { saveData() }
             btnMenuDelete.setOnClickListener {
                 if (menu != null) viewModel.delete(menu!!)
                 finish()
@@ -51,7 +55,16 @@ class MenuAddActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveData(view: View) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == android.R.id.home) {
+            finish()
+        }
+
+        return true
+    }
+
+    private fun saveData() {
         binding.apply {
             val categoryEt = tilMenuCategory.editText?.text
             val nameEt = tilMenuName.editText?.text

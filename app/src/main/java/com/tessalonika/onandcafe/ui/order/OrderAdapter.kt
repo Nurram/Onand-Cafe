@@ -1,6 +1,7 @@
 package com.tessalonika.onandcafe.ui.order
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +10,8 @@ import com.tessalonika.onandcafe.databinding.ItemListOrderBinding
 import com.tessalonika.onandcafe.model.Menu
 
 class OrderAdapter(
-    private val context: Context
+    private val context: Context,
+    private val onClick: (Long, Boolean) -> Unit
 ) : RecyclerView.Adapter<OrderAdapter.OrderHolder>() {
     private val menus = arrayListOf<Menu>()
     private val menuIds = arrayListOf<Long>()
@@ -17,7 +19,7 @@ class OrderAdapter(
     inner class OrderHolder(
         private val binding: ItemListOrderBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(menu: Menu) {
+        fun bind(menu: Menu, position: Int) {
             binding.apply {
                 tvName.text = menu.name
 
@@ -33,20 +35,32 @@ class OrderAdapter(
                 ibAdd.setOnClickListener { changeQty(1, menu.price) }
                 ibReduce.setOnClickListener { changeQty(-1, menu.price) }
                 ibDelete.setOnClickListener { removeData(adapterPosition) }
+
+                menuIds.add(menu.menuId)
             }
         }
 
         private fun changeQty(value: Int, price: Long) {
-            var qty = binding.tvQty.text.toString().toInt()
+            var qty = binding.tvQty.text.toString().toLong()
             qty += value
 
+            val totalPrice = price * qty
             binding.tvQty.text = qty.toString()
-            binding.tvPrice.text = context.getString(R.string.rp, (price * qty).toString())
+            binding.tvPrice.text = context.getString(R.string.rp, totalPrice.toString())
+
+            onClick(price, value > 0)
         }
 
         private fun removeData(position: Int) {
             menus.removeAt(position)
-            notifyItemChanged(position)
+            menuIds.removeAt(position)
+            notifyItemRemoved(position)
+
+            var currentPrice = binding.tvPrice.text.toString()
+            if (currentPrice.contains("Rp."))
+                currentPrice = currentPrice.removeRange(0..2)
+
+            onClick(currentPrice.toLong(), false)
         }
     }
 
@@ -58,8 +72,7 @@ class OrderAdapter(
     }
 
     override fun onBindViewHolder(holder: OrderHolder, position: Int) {
-        holder.bind(menus[position])
-        menuIds.add(menus[position].menuId)
+        holder.bind(menus[position], position)
     }
 
     override fun getItemCount(): Int = menus.size

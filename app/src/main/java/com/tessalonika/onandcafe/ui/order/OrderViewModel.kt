@@ -1,6 +1,5 @@
 package com.tessalonika.onandcafe.ui.order
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.tessalonika.onandcafe.base.BaseViewModel
 import com.tessalonika.onandcafe.db.daos.OrderWithMenuDao
@@ -16,9 +15,11 @@ class OrderViewModel(
 
     fun insertOrder(value: Order, menuId: Long) {
         viewModelScope.launch {
-            val tableIsOccupied = tableDao?.getIsOccupied(value.tableNo.toInt()) ?: 0
-            Log.d("TAG", "Table $tableIsOccupied")
-            if (tableIsOccupied == 1) {
+            val table = tableDao?.getTableById(value.tableNo.toInt())
+
+            if(table == null) {
+                onError.postValue("Table number not found!")
+            } else if (table.isOccupied) {
                 onError.postValue("Table are already occupied!")
             } else {
                 val orderId = dao?.insert(value)

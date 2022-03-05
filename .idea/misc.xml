@@ -11,9 +11,13 @@
         <entry key="app/src/main/res/drawable/semi_rounded_corner.xml" value="0.1945" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/activity_home_admin.xml" value="0.15854700854700854" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.13381787088499358" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.13381787088499358" />
+        <entry key="app/src/main/res/layout/activity_menu_add.xml" value="0.14" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.13381787088499358" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.13381787088499358" />
+        <entry key="app/src/main/res/layout/activity_stock_add.xml" value="0.2" />
         <entry key="app/src/main/res/layout/appbar_admin_main.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/appbar_main.xml" value="0.15854700854700854" />
         <entry key="app/src/main/res/layout/dialog_table.xml" value="0.1" />
