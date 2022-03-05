@@ -82,7 +82,7 @@ class HistoryAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(date: Date) {
-            binding.itemDate.text = DateUtil.formatDate(date)
+            binding.itemDate.text = DateUtil.formatDayDate(date)
         }
     }
 }

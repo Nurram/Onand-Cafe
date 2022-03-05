@@ -38,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             btnRegisterLogin.setOnClickListener {
-                Navigation.findNavController(it).popBackStack()
+                finish()
             }
 
             btnRegister.setOnClickListener {

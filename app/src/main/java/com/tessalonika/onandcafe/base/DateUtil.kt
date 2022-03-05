@@ -6,6 +6,11 @@ import java.util.*
 class DateUtil {
     companion object {
         fun formatDate(input: Date): String {
+            val result = SimpleDateFormat("dd/MMMM/yyyy", Locale.getDefault())
+            return result.format(input)
+        }
+
+        fun formatDayDate(input: Date): String {
             val result = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
             return result.format(input)
         }

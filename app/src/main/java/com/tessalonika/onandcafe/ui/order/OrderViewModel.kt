@@ -1,5 +1,7 @@
 package com.tessalonika.onandcafe.ui.order
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tessalonika.onandcafe.base.BaseViewModel
 import com.tessalonika.onandcafe.db.daos.OrderWithMenuDao
@@ -13,30 +15,38 @@ class OrderViewModel(
     private val tableDao: TableDao?
 ) : BaseViewModel<Long>() {
 
-    fun insertOrder(value: Order, menuId: Long) {
+    fun insertOrder(value: Order): LiveData<Long> {
+        val orderId = MutableLiveData<Long>()
+
         viewModelScope.launch {
             val table = tableDao?.getTableById(value.tableNo.toInt())
 
-            if(table == null) {
-                onError.postValue("Table number not found!")
-            } else if (table.isOccupied) {
-                onError.postValue("Table are already occupied!")
-            } else {
-                val orderId = dao?.insert(value)
-
-                if (orderId != null) {
-                    val orderMenuRef = OrderMenuCrossRef(orderId, menuId)
-                    val id = dao?.insert(orderMenuRef)
-
-                    if (id == null) {
-                        onError.postValue("Cannot save data!")
-                    } else {
-                        isSuccess.postValue(id)
-                        tableDao?.setOccupied(value.tableNo.toInt())
-                    }
-                } else {
-                    onError.postValue("Cannot save data!")
+            when {
+                table == null -> {
+                    onError.postValue("Table number not found!")
                 }
+                table.isOccupied -> {
+                    onError.postValue("Table are already occupied!")
+                }
+                else -> {
+                    orderId.postValue(dao?.insert(value))
+                }
+            }
+        }
+
+        return orderId
+    }
+
+    fun insertOrderWithMenu(orderId: Long, menuId: Long, tableNo: Int) {
+        viewModelScope.launch {
+            val orderMenuRef = OrderMenuCrossRef(orderId, menuId)
+            val id = dao?.insert(orderMenuRef)
+
+            if (id == null) {
+                onError.postValue("Cannot save data!")
+            } else {
+                isSuccess.postValue(id)
+                tableDao?.setOccupied(tableNo)
             }
         }
     }

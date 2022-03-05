@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Onand Cafe</string>
+    <string name="app_name">Onand Coffee</string>
 
     //Login
     <string name="login_msg">Login to your account</string>

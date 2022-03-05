@@ -19,14 +19,14 @@ class HistoryViewModel(
 
     fun mapData(orders: ArrayList<Order>): List<Order> =
         if (!orders.isNullOrEmpty()) {
-            var date = DateUtil.formatDate(orders[0].orderDate)
+            var date = DateUtil.formatDayDate(orders[0].orderDate)
             val order = Order(orderDate = orders[0].orderDate)
             order.type = 1
             orders.add(0, order)
 
             var i = 0
             while (i <= orders.size - 1) {
-                val formattedDate = DateUtil.formatDate(orders[i].orderDate)
+                val formattedDate = DateUtil.formatDayDate(orders[i].orderDate)
 
                 if (date != formattedDate) {
                     date = formattedDate

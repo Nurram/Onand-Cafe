@@ -1,6 +1,7 @@
 package com.tessalonika.onandcafe.ui.stock.add
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -20,6 +21,8 @@ class StockAddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStockAddBinding
     private lateinit var viewModel: StockViewModel
 
+    private var isUpdate = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,12 +33,18 @@ class StockAddActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory(application)
         viewModel = ViewModelProvider(this, factory)[StockViewModel::class.java]
+        viewModel.getIsSuccess().observe(this) {
+            if (it != null) finish()
+        }
+        viewModel.getOnError().observe(this) {
+            if (it.isNotEmpty()) showToast(this, it, Toast.LENGTH_SHORT)
+        }
 
         val stock: Stock? = intent?.getParcelableExtra("stock")
         initUpdateUI(stock)
 
         binding.apply {
-            btnStockSave.setOnClickListener { saveStock(it) }
+            btnStockSave.setOnClickListener { saveStock() }
         }
     }
 
@@ -52,6 +61,8 @@ class StockAddActivity : AppCompatActivity() {
         binding.apply {
 
             if (stock != null) {
+                isUpdate = true
+
                 tilStockName.editText?.setText(stock.stockName)
                 tilStockId.editText?.let {
                     it.setText(stock.id.toString())
@@ -73,7 +84,7 @@ class StockAddActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveStock(view: View) {
+    private fun saveStock() {
         binding.apply {
             val stockNameEt = tilStockName.editText?.text
             val stockIdEt = tilStockId.editText?.text
@@ -107,8 +118,11 @@ class StockAddActivity : AppCompatActivity() {
                     stockTotalEt.toString().toInt()
                 )
 
-                viewModel.insertStock(stock)
-                Navigation.findNavController(view).popBackStack()
+                if(isUpdate) {
+                    viewModel.updateStock(stock)
+                    finish()
+                }
+                else viewModel.insertStock(stock)
             }
         }
     }

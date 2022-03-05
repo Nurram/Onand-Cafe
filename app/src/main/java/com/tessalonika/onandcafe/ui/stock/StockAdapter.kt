@@ -21,9 +21,9 @@ class StockAdapter(
                 tvStockName.text = stock.stockName
 
                 if (stock.stockName.length > 1) {
-                    tvStockInitial.text = stock.stockName.slice(0..2)
-                } else {
                     tvStockInitial.text = stock.stockName.slice(0..1)
+                } else {
+                    tvStockInitial.text = stock.stockName[0].toString()
                 }
 
                 itemView.setOnClickListener { onClick(stock) }

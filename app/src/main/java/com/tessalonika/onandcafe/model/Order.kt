@@ -12,6 +12,7 @@ import java.util.*
 data class Order(
     @PrimaryKey(autoGenerate = true)
     val orderId: Long = -1L,
+    val id: String = "",
     val buyerName: String = "",
     val paymentType: String = "",
     val orderDate: Date,

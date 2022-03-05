@@ -1,5 +1,6 @@
 package com.tessalonika.onandcafe.ui.stock
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.tessalonika.onandcafe.base.BaseViewModel
 import com.tessalonika.onandcafe.db.daos.StockDao
@@ -8,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class StockViewModel(
     private val stockDao: StockDao?
-) : BaseViewModel<List<Stock>>() {
+) : BaseViewModel<Long>() {
 
     fun getStocks() = stockDao?.getStocks()
 
@@ -19,8 +20,16 @@ class StockViewModel(
             if (existingStock != null) {
                 onError.postValue("ID already used!")
             } else {
-                stockDao?.insertStock(stock)
+                Log.d("TAG", "Insert")
+                isSuccess.postValue(stockDao?.insertStock(stock))
             }
+        }
+    }
+
+    fun updateStock(stock: Stock) {
+        Log.d("TAG", "Update")
+        viewModelScope.launch {
+            stockDao?.updateStock(stock)
         }
     }
 

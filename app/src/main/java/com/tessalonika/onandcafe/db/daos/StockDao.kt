@@ -7,8 +7,11 @@ import com.tessalonika.onandcafe.model.Stock
 @Dao
 interface StockDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertStock(stock: Stock): Long
+
+    @Update
+    suspend fun updateStock(stock: Stock)
 
     @Delete
     suspend fun deleteStock(stock: Stock)

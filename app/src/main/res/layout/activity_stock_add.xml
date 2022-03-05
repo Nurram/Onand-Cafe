@@ -14,14 +14,11 @@
             android:id="@+id/tb_stock_add"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/add_stock"
-            app:titleTextColor="@color/white" />
+            app:title="@string/add_stock" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_stock_name"
