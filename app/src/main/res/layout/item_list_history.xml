@@ -45,6 +45,7 @@
                 tools:text="Tunai" />
 
             <View
+                android:id="@+id/v_status"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="center"

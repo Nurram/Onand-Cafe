@@ -64,6 +64,9 @@
 
     //History
     <string name="table_">Meja %s</string>
+    <string name="detail">Detail</string>
+    <string name="set_paid">Set Paid</string>
+    <string name="order_menu">Order menus</string>
 
     //Category
     <string name="category">Category</string>

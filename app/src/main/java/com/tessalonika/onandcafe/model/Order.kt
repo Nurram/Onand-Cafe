@@ -17,7 +17,8 @@ data class Order(
     val paymentType: String = "",
     val orderDate: Date,
     val totalPrice: Long = -1L,
-    val tableNo: String = ""
+    val tableNo: String = "",
+    val isPaid: Int = 0
 ) {
     @Ignore
     var type: Int = 0

@@ -4,12 +4,13 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import com.tessalonika.onandcafe.db.daos.*
 import com.tessalonika.onandcafe.model.*
 
 @Database(
     entities = [User::class, Table::class, Stock::class, Menu::class, Order::class, OrderMenuCrossRef::class],
-    version = 1
+    version = 2
 )
 abstract class MainDb : RoomDatabase() {
     abstract val userDao: UserDao
@@ -29,12 +30,18 @@ abstract class MainDb : RoomDatabase() {
                         db = Room.databaseBuilder(
                             application.applicationContext,
                             MainDb::class.java, "main_db"
-                        ).build()
+                        )
+                            .addMigrations(MIGRATION_1_2)
+                            .build()
                     }
                 }
             }
 
             return db
+        }
+
+        private val MIGRATION_1_2 = Migration(1, 2) {
+            it.execSQL("ALTER TABLE 'order' ADD 'isPaid' INTEGER NOT NULL DEFAULT 0")
         }
     }
 }

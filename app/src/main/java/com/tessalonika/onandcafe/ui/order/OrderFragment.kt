@@ -86,7 +86,8 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>() {
                         "Tunai",
                         Date(),
                         priceTotal.toString().toLong(),
-                        tableNo.toString()
+                        tableNo.toString(),
+                        0
                     )
 
                     viewModel.insertOrder(order).observe(viewLifecycleOwner) {

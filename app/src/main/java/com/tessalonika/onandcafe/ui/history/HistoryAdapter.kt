@@ -15,7 +15,8 @@ import com.tessalonika.onandcafe.model.Order
 import java.util.*
 
 class HistoryAdapter(
-    private val context: Context
+    private val context: Context,
+    private val onCLick: (Long) -> Unit
 ) : ListAdapter<Order, RecyclerView.ViewHolder>(DIFF_UTIL) {
 
     companion object {
@@ -74,7 +75,13 @@ class HistoryAdapter(
                 tvPayment.text = order.paymentType
                 tvPriceTotal.text = context.getString(R.string.rp, order.totalPrice.toString())
                 tvTable.text = context.getString(R.string.table_, order.tableNo)
+
+                if (order.isPaid == 1) {
+                    vStatus.setBackgroundResource(R.drawable.circle_green)
+                }
             }
+
+            itemView.setOnClickListener { onCLick(order.orderId) }
         }
     }
 

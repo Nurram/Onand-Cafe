@@ -11,12 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnandCafe"
         tools:ignore="LockedOrientationActivity">
-
+        <activity
+            android:name=".ui.history.detail.HistoryDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.home.HomeActivity"/>
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false"
